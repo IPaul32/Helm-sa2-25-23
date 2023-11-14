@@ -96,7 +96,7 @@ data:
           - kubernetes:
               containerCapStr: "10"
               maxRequestsPerHostStr: "32"
-              jenkinsUrl: "http://jenkins.k8s-3.sa:8080"
+              jenkinsUrl: "http://my-helm-jenkins.k8s-3.sa"
               name: "kubernetes"
               namespace: "{{ .Values.namespace }}"
               skipTlsVerify: true
