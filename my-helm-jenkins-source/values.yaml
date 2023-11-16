@@ -92,8 +92,10 @@ JCYsubPath: "jenkins.yaml"
 JenkinsConfig: "/var/jenkins_home"
 
 nfs:
- server: 192.168.37.105
- path: "/mnt/IT-Academy/nfs-data/sa2-25-23/Ivanchuk_Pavel/jenkins"  
+  server: 192.168.37.105
+  path: "/mnt/IT-Academy/nfs-data/sa2-25-23/Ivanchuk_Pavel/jenkins"  
+  readOnly: false
+  vers: 3
 
 nodeSelector: {}
 

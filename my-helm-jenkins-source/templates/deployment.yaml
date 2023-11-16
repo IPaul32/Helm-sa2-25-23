@@ -69,7 +69,6 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   basic-security.groovy: |
-    #!groovy
     import jenkins.model.*
     import hudson.security.*
     def instance = Jenkins.getInstance()
@@ -96,7 +95,7 @@ data:
           - kubernetes:
               containerCapStr: "10"
               maxRequestsPerHostStr: "32"
-              jenkinsUrl: "http://jenkins:8080"
+              jenkinsUrl: "http://my-helm-jenkins:8080"
               name: "kubernetes"
               namespace: "{{ .Values.namespace }}"
               skipTlsVerify: true
@@ -113,7 +112,7 @@ data:
         unclassified:
           location:
             adminAddress: "marchik32@gmail.com"
-            url: "http:/jenkins.k8s-3.sa/"
+            url: "http:/my-helm-jenkins.k8s-3.sa/"
           shell:
             shell: "/bin/bash"
 ---
@@ -158,11 +157,12 @@ metadata:
   name: {{ .Values.name }}
   namespace: {{ .Values.namespace }}
 spec:
+  type: {{ .Values.service.type }}
   ports:
-    - name: master
+    - name: http
       port: {{ .Values.service.hport }}
       targetPort: {{ .Values.service.hport }}
-    - name: slave
+    - name: jnlp
       port: {{ .Values.service.jport }}
       targetPort: {{ .Values.service.jport }}
   selector:
